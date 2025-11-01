@@ -1,0 +1,377 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world! <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WM Solution Services - Cyber AI Platform</title>
+  <meta name="description" content="Enterprise AI automation and technology solutions for real-world business transformation">
+  <meta name="keywords" content="AI, automation, machine learning, chatbots, RPA, technology services, cyber security">
+  <meta property="og:title" content="WM Solution Services">
+  <meta property="og:description" content="Transform your business with AI and automation">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Share Tech Mono', 'Courier New', monospace; background: #000; color: #00FF00; overflow-x: hidden; }
+    .matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.08; z-index: 0; pointer-events: none; font-size: 10px; line-height: 12px; word-break: break-all; color: #00FF00; }
+    .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px); background-size: 50px 50px; z-index: 0; pointer-events: none; }
+    .cyber-glow { text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00; }
+    .cyber-border { border: 1px solid #00FF00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+    .cyber-border:hover { box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); }
+    .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to bottom, transparent, rgba(0, 255, 0, 0.3), transparent); animation: scan 8s linear infinite; z-index: 100; pointer-events: none; }
+    @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: #00FF00; border: 1px solid #000; }
+    input, button { font-family: 'Share Tech Mono', monospace; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="matrix-bg" id="matrix"></div>
+  <div class="grid-bg"></div>
+  <div class="scanline"></div>
+  <div id="app" class="relative z-10"></div>
+  <script>
+    const matrixEl = document.getElementById('matrix');
+    function updateMatrix() {
+      const chars = '01';
+      let text = '';
+      for (let i = 0; i < 1000; i++) text += chars.charAt(Math.floor(Math.random() * 2));
+      matrixEl.textContent = text;
+    }
+    setInterval(updateMatrix, 100);
+    updateMatrix();
+
+    let currentView = 'landing';
+    let currentUser = null;
+
+    const users = [
+      { id: 1, email: 'admin@wmsolution.services', password: 'admin123', name: 'Admin Cyber', role: 'admin' },
+      { id: 2, email: 'john@cybertech.com', password: '123456', name: 'John Matrix', role: 'client' }
+    ];
+
+    const services = [
+      { title: 'AI AUTOMATION', desc: 'Processos automatizados com inteligência artificial de última geração', price: '€2.500+' },
+      { title: 'CYBER CHATBOTS', desc: 'Bots inteligentes 24/7 com processamento de linguagem natural avançado', price: '€1.200+' },
+      { title: 'DATA ANALYTICS', desc: 'Análise preditiva e visualização de dados em tempo real', price: '€3.000+' },
+      { title: 'SYSTEM INTEGRATION', desc: 'Conexão neural entre todos os seus sistemas e plataformas', price: '€2.000+' },
+      { title: 'AI CONSULTING', desc: 'Consultoria estratégica em inteligência artificial', price: '€5.000+' },
+      { title: 'CUSTOM SOFTWARE', desc: 'Desenvolvimento de software sob medida com tecnologia de ponta', price: 'Custom Quote' },
+      { title: 'RPA SYSTEMS', desc: 'Robôs inteligentes para automação de processos repetitivos', price: '€1.800+' },
+      { title: 'MACHINE LEARNING', desc: 'Modelos de aprendizado de máquina para previsões precisas', price: '€4.000+' }
+    ];
+
+    function renderLanding() {
+      return `
+        <div class="min-h-screen fade-in">
+          <header class="border-b border-green-500/30 backdrop-blur-sm bg-black/80 sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 border-2 border-green-500 bg-black flex items-center justify-center relative">
+                  <span class="text-2xl">▶</span>
+                  <div class="absolute inset-0 border border-green-500 animate-pulse"></div>
+                </div>
+                <div>
+                  <h1 class="text-xl md:text-2xl font-bold cyber-glow">WM_SOLUTION</h1>
+                  <p class="text-xs text-green-400">&gt; SERVICES_PLATFORM</p>
+                </div>
+              </div>
+              <div class="flex space-x-2 md:space-x-4">
+                <button onclick="showAuth()" class="px-4 md:px-6 py-2 border border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-all duration-300 text-sm md:text-base">
+                  [LOGIN]
+                </button>
+                <button onclick="showAuth()" class="px-4 md:px-6 py-2 bg-green-500 text-black font-bold hover:bg-green-400 transition-all duration-300 text-sm md:text-base">
+                  [START_NOW]
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <section class="container mx-auto px-4 py-12 md:py-20">
+            <div class="max-w-5xl mx-auto text-center">
+              <div class="mb-6 text-xs md:text-sm">
+                <p>&gt; INITIALIZING SYSTEM...</p>
+                <p>&gt; LOADING AI MODULES...</p>
+                <p class="text-green-400">&gt; STATUS: ONLINE</p>
+              </div>
+              <h2 class="text-4xl md:text-7xl font-bold mb-6 cyber-glow leading-tight">
+                TRANSFORM YOUR<br/><span class="text-green-400 animate-pulse">BUSINESS_MATRIX</span>
+              </h2>
+              <div class="cyber-border bg-black/50 p-4 md:p-6 mb-8 inline-block">
+                <p class="text-base md:text-xl text-green-400">
+                  &gt; ENTERPRISE AI AUTOMATION SYSTEMS<br/>
+                  &gt; REAL_WORLD_WORK_MACHINE TECHNOLOGY
+                </p>
+              </div>
+              <div>
+                <button onclick="showAuth()" class="px-6 md:px-8 py-3 md:py-4 bg-green-500 text-black text-base md:text-lg font-bold hover:bg-green-400 transition-all duration-300 inline-flex items-center">
+                  [CONNECT_NOW] <span class="ml-2">→</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto mt-12 md:mt-20">
+              ${[
+                { value: '500+', label: 'SYSTEMS_DEPLOYED' },
+                { value: '98%', label: 'SUCCESS_RATE' },
+                { value: '50+', label: 'CLIENTS_CONNECTED' }
+              ].map(stat => `
+                <div class="cyber-border bg-black/80 p-6 hover:shadow-lg hover:shadow-green-500/20 transition-all">
+                  <div class="text-3xl md:text-4xl font-bold mb-2">${stat.value}</div>
+                  <div class="text-green-400 text-xs md:text-sm">&gt; ${stat.label}</div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <section class="container mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12 md:mb-16">
+              <h3 class="text-3xl md:text-5xl font-bold cyber-glow mb-4">[CYBER_SERVICES]</h3>
+              <p class="text-base md:text-xl text-green-400">&gt; ADVANCED_TECHNOLOGY_MODULES</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+              ${services.map(service => `
+                <div class="cyber-border bg-black/80 p-4 md:p-6 hover:shadow-lg hover:shadow-green-500/20 transition-all cursor-pointer group">
+                  <h4 class="text-lg md:text-xl font-bold mb-3 group-hover:cyber-glow transition-all">${service.title}</h4>
+                  <p class="text-green-400/80 text-xs md:text-sm mb-4 leading-relaxed">${service.desc}</p>
+                  <div class="border-t border-green-500/30 pt-4 mt-4">
+                    <div class="font-bold text-sm md:text-base">${service.price}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <section class="container mx-auto px-4 py-12 md:py-20">
+            <div class="border-2 border-green-500 bg-black/90 p-8 md:p-12 text-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent"></div>
+              <h3 class="text-2xl md:text-4xl font-bold mb-4 cyber-glow relative z-10">&gt; READY_TO_UPGRADE?</h3>
+              <p class="text-base md:text-xl text-green-400 mb-6 md:mb-8 relative z-10">CONNECT WITH OUR CYBER SPECIALISTS</p>
+              <button onclick="showAuth()" class="px-6 md:px-8 py-3 md:py-4 bg-green-500 text-black text-base md:text-lg font-bold hover:bg-green-400 transition-all relative z-10">
+                [INITIATE_CONNECTION]
+              </button>
+            </div>
+          </section>
+
+          <footer class="border-t border-green-500/30 bg-black/80 py-6 md:py-8">
+            <div class="container mx-auto px-4 text-center">
+              <p class="cyber-glow text-sm md:text-base">© 2025 WMSOLUTION.SERVICES // ALL_RIGHTS_RESERVED</p>
+              <p class="text-xs md:text-sm text-green-400 mt-2">&gt; CYBER_TECH // REAL_WORLD_WORK_MACHINE</p>
+            </div>
+          </footer>
+        </div>
+      `;
+    }
+
+    function renderAuth() {
+      return `
+        <div class="min-h-screen flex items-center justify-center p-4 fade-in">
+          <div class="cyber-border bg-black/95 p-6 md:p-8 w-full max-w-md">
+            <div class="text-center mb-6 md:mb-8">
+              <div class="w-14 md:w-16 h-14 md:h-16 cyber-border bg-black mx-auto mb-4 flex items-center justify-center relative">
+                <span class="text-2xl md:text-3xl">▶</span>
+                <div class="absolute inset-0 border border-green-500 animate-pulse"></div>
+              </div>
+              <h1 class="text-2xl md:text-3xl font-bold cyber-glow mb-2">WMSOLUTION.SERVICES</h1>
+              <p class="text-green-400 text-xs md:text-sm">&gt; ACCESS_TERMINAL</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs md:text-sm mb-2">&gt; EMAIL:</label>
+                <input type="email" id="email" placeholder="USER@CYBER.COM" required
+                  class="w-full px-3 md:px-4 py-2 md:py-3 bg-black border border-green-500/50 text-green-500 focus:border-green-500 focus:outline-none text-sm md:text-base"/>
+              </div>
+              <div>
+                <label class="block text-xs md:text-sm mb-2">&gt; PASSWORD:</label>
+                <input type="password" id="password" placeholder="********" required
+                  class="w-full px-3 md:px-4 py-2 md:py-3 bg-black border border-green-500/50 text-green-500 focus:border-green-500 focus:outline-none text-sm md:text-base"/>
+              </div>
+              <div id="error-msg" class="text-red-500 text-xs md:text-sm hidden"></div>
+              <button type="submit" class="w-full bg-green-500 text-black py-2 md:py-3 font-bold hover:bg-green-400 transition-all text-sm md:text-base">
+                [CONNECT]
+              </button>
+              <div class="text-center">
+                <button type="button" onclick="showLanding()" class="text-green-400 hover:text-green-500 text-xs md:text-sm">
+                  &lt; RETURN_HOME
+                </button>
+              </div>
+              <div class="cyber-border bg-green-500/5 p-3">
+                <p class="text-xs md:text-sm mb-2">&gt; TEST_ACCOUNTS:</p>
+                <div class="text-xs text-green-400 space-y-1">
+                  <p>&gt; ADMIN: admin@wmsolution.services // admin123</p>
+                  <p>&gt; CLIENT: john@cybertech.com // 123456</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDashboard() {
+      const isAdmin = currentUser.role === 'admin';
+      return `
+        <div class="min-h-screen fade-in">
+          <header class="border-b border-green-500/30 bg-black/95">
+            <div class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+              <div class="flex items-center space-x-3">
+                <span class="text-xl md:text-2xl">▶</span>
+                <div>
+                  <h1 class="text-base md:text-xl font-bold cyber-glow">WMSOLUTION.SERVICES</h1>
+                  <p class="text-xs text-green-400">&gt; ${isAdmin ? 'ADMIN_PANEL' : 'CLIENT_DASHBOARD'}</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 md:space-x-4">
+                <span class="text-xs md:text-sm">&gt; ${currentUser.name}</span>
+                <button onclick="logout()" class="border border-red-500 text-red-500 px-2 md:px-3 py-1 md:py-2 hover:bg-red-500 hover:text-black transition-all text-xs md:text-sm">
+                  [LOGOUT]
+                </button>
+              </div>
+            </div>
+          </header>
+          <div class="container mx-auto px-4 py-6 md:py-8">
+            <div class="cyber-border bg-black/90 p-4 md:p-6 mb-6 md:mb-8">
+              <h2 class="text-xl md:text-2xl font-bold mb-2 cyber-glow">&gt; WELCOME, ${currentUser.name.toUpperCase()}</h2>
+              <p class="text-green-400 text-sm md:text-base">&gt; SYSTEM_STATUS: ONLINE // ACCESS_GRANTED</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              ${[
+                { label: 'ACTIVE_PROJECTS', value: isAdmin ? '15' : '3' },
+                { label: 'COMPLETED', value: isAdmin ? '142' : '12' },
+                { label: isAdmin ? 'TOTAL_CLIENTS' : 'PENDING_TASKS', value: isAdmin ? '28' : '1' }
+              ].map(stat => `
+                <div class="cyber-border bg-black/90 p-4 md:p-6 hover:shadow-lg hover:shadow-green-500/20 transition-all">
+                  <p class="text-green-400 text-xs md:text-sm mb-2">&gt; ${stat.label}</p>
+                  <p class="text-3xl md:text-4xl font-bold">${stat.value}</p>
+                </div>
+              `).join('')}
+            </div>
+            <div class="mt-6 md:mt-8 cyber-border bg-black/90 p-4 md:p-6">
+              <h3 class="text-lg md:text-xl font-bold cyber-glow mb-4">&gt; RECENT_ACTIVITY</h3>
+              <div class="space-y-3">
+                ${[
+                  { action: 'PROJECT_UPDATE', desc: 'AI Automation - Progress: 65%', time: '2 hours ago' },
+                  { action: 'NEW_REQUEST', desc: 'Data Analytics Dashboard', time: '5 hours ago' },
+                  { action: 'SYSTEM_CHECK', desc: 'All systems operational', time: '1 day ago' }
+                ].map(activity => `
+                  <div class="border-b border-green-500/30 pb-3">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                      <div>
+                        <p class="font-bold text-sm md:text-base">&gt; ${activity.action}</p>
+                        <p class="text-xs md:text-sm text-green-400">${activity.desc}</p>
+                      </div>
+                      <span class="text-xs text-green-400/70">${activity.time}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.showLanding = () => { currentView = 'landing'; render(); };
+    window.showAuth = () => { currentView = 'auth'; render(); };
+    window.handleLogin = (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error-msg');
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        currentUser = user;
+        currentView = 'dashboard';
+        render();
+      } else {
+        errorMsg.textContent = '&gt; ERROR: ACCESS_DENIED - INVALID_CREDENTIALS';
+        errorMsg.classList.remove('hidden');
+      }
+    };
+    window.logout = () => { currentUser = null; currentView = 'landing'; render(); };
+    function render() {
+      const app = document.getElementById('app');
+      if (currentView === 'landing') app.innerHTML = renderLanding();
+      else if (currentView === 'auth') app.innerHTML = renderAuth();
+      else if (currentView === 'dashboard') app.innerHTML = renderDashboard();
+      window.scrollTo(0, 0);
+    }
+    render();
+  </script>
+</body>
+</html>
+```
+
+---
+
+## 🚀 **COMO FAZER DEPLOY NO VERCEL:**
+
+### **MÉTODO 1: Drag & Drop (MAIS FÁCIL)**
+
+1. **Salve o código acima** como `index.html`
+2. **Vá em:** https://vercel.com/new
+3. **Arraste o arquivo** `index.html`
+4. **Deploy automático!** ⚡
+5. **Pronto!** Você recebe: `seu-projeto.vercel.app`
+
+### **MÉTODO 2: GitHub**
+
+1. Crie repositório no GitHub
+2. Faça upload do `index.html`
+3. No Vercel: Import Git Repository
+4. Selecione o repositório
+5. Deploy!
+
+---
+
+## 🌐 **ADICIONAR DOMÍNIO wmsolution.services:**
+
+1. **No Vercel Dashboard:**
+   - Settings → Domains
+   - Adicione: `wmsolution.services`
+   - Adicione: `www.wmsolution.services`
+
+2. **Copie os Nameservers:**
+```
+   ns1.vercel-dns.com
+   ns2.vercel-dns.com
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
